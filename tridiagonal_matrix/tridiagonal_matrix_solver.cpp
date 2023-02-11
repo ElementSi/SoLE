@@ -1,5 +1,6 @@
 #include "tridiagonal_matrix_solver.h"
 
+// Function to solve SoLE realization
 std::vector<double> SolveTridiagonalMatrix(const unsigned int n,
                                            const TridiagonalMatrix& A,
                                            const std::vector<double>& f)
@@ -30,6 +31,7 @@ std::vector<double> SolveTridiagonalMatrix(const unsigned int n,
     return x;
 }
 
+// Function to solve SoLE realization
 std::ostream& operator<<(std::ostream& os, const std::vector<double>& v)
 {
     unsigned int n = v.size();

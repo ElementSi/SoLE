@@ -49,6 +49,7 @@ TridiagonalMatrix::TridiagonalMatrix(std::vector<Triplet> &v): data_(v) {}
 
 TridiagonalMatrix::TridiagonalMatrix(std::vector<Triplet> &&v): data_(v) {}
 
+// Custom output operator for TridiagonalMatrix class realization
 std::ostream& operator<<(std::ostream& os, const TridiagonalMatrix& mtx) {
     unsigned int n = mtx.data_.size();
     unsigned int cell_w = 8;
@@ -95,6 +96,7 @@ std::ostream& operator<<(std::ostream& os, const TridiagonalMatrix& mtx) {
     return os;
 }
 
+// Getter realization
 Triplet TridiagonalMatrix::GetTriplet(unsigned int i) const {
     return data_[i];
 }

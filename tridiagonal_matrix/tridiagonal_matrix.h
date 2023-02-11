@@ -12,6 +12,7 @@ struct Triplet {
     double c;
 };
 
+// Class allowing to store square tridiagonal matrix compactly
 class TridiagonalMatrix {
 private:
     // Vector of elements of main and adjacent diagonals of matrix
