@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 add_subdirectory(google-tests)
 
 file(GLOB_RECURSE TRIDIAGONAL_MATRIX
-        "tridiagonal_matrix/*.h"
-        "tridiagonal_matrix/*.cpp")
+        "source/tridiagonal_matrix/*.h"
+        "source/tridiagonal_matrix/*.cpp")
 
 add_library(tridiagonal_matrix STATIC ${TRIDIAGONAL_MATRIX})

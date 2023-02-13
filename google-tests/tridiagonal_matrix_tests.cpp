@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
-#include "../tridiagonal_matrix/tridiagonal_matrix.h"
-#include "../tridiagonal_matrix/tridiagonal_matrix_solver.h"
+#include "../source/tridiagonal_matrix/tridiagonal_matrix.h"
+#include "../source/tridiagonal_matrix/tridiagonal_matrix_solver.h"
 
 TEST(TridiagonalTest, Matrix5)
 {
