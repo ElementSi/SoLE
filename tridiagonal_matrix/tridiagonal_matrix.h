@@ -18,6 +18,9 @@ private:
     // Vector of elements of main and adjacent diagonals of matrix
     std::vector<Triplet> data_;
 
+    // Order of original square matrix
+    unsigned int order_;
+
 public:
     // Constructors
     TridiagonalMatrix() = default;
@@ -39,11 +42,11 @@ public:
     // Destructors
     ~TridiagonalMatrix() = default;
 
-    // Custom output operator for TridiagonalMatrix class
-    friend std::ostream& operator<<(std::ostream& os, const TridiagonalMatrix& mtx);
+    // Triplet getter
+    const Triplet& GetTriplet(unsigned int i) const;
 
-    // Getter
-    Triplet GetTriplet(unsigned int i) const;
+    // Order getter
+    unsigned int GetOrder() const;
 };
 
 #endif //SOLE_TRIDIAGONAL_MATRIX_H

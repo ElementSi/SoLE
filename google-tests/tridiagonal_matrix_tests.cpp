@@ -19,6 +19,23 @@ TEST(TridiagonalTest, Matrix5)
     EXPECT_FLOAT_EQ(x[4], - 10803.0 / 497.0);
 }
 
+TEST(TridiagonalTest, Matrix5Rvalue)
+{
+    TridiagonalMatrix A {5,
+                         {14.0, 2.0, 5.0, 7.0},
+                         {5.0, 6.0, 3.0, 2.0, 7.0},
+                         {1.0, 3.0, 2.0, 1.0}};
+    std::vector<double> f {2.0, 8.0, 43.0, 11.0, 2.0};
+
+    auto x = SolveTridiagonalMatrix(5, A, f);
+
+    EXPECT_FLOAT_EQ(x[0], - 173.0 / 994.0);
+    EXPECT_FLOAT_EQ(x[1], 2853.0 / 994.0);
+    EXPECT_FLOAT_EQ(x[2], - 1124.0 / 497.0);
+    EXPECT_FLOAT_EQ(x[3], 10945.0 / 497.0);
+    EXPECT_FLOAT_EQ(x[4], - 10803.0 / 497.0);
+}
+
 TEST(TridiagonalTest, Matrix7)
 {
     TridiagonalMatrix A {7,

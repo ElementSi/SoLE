@@ -7,6 +7,7 @@ TridiagonalMatrix::TridiagonalMatrix(unsigned int n,
                                      std::vector<double>& r_diag) {
     // Setting the data vector size equal to order of initial matrix
     this->data_.resize(n);
+    this->order_ = n;
 
     // Setting elements b_0 & c_0 in first line
     this->data_[0].b = m_diag[0];
@@ -29,6 +30,7 @@ TridiagonalMatrix::TridiagonalMatrix(unsigned int n,
                                      std::vector<double>&& r_diag) {
     // Setting the data vector size equal to order of initial matrix
     this->data_.resize(n);
+    this->order_ = n;
 
     // Setting elements b_0 & c_0 in first line
     this->data_[0].b = m_diag[0];
@@ -49,54 +51,12 @@ TridiagonalMatrix::TridiagonalMatrix(std::vector<Triplet> &v): data_(v) {}
 
 TridiagonalMatrix::TridiagonalMatrix(std::vector<Triplet> &&v): data_(v) {}
 
-// Custom output operator for TridiagonalMatrix class realization
-std::ostream& operator<<(std::ostream& os, const TridiagonalMatrix& mtx) {
-    unsigned int n = mtx.data_.size();
-    unsigned int cell_w = 8;
-
-    // Formatting
-    os <<std::setprecision((int)cell_w - 4);
-
-    // Printing first line
-    os << std::setw((int)cell_w) << std::left << mtx.data_[0].b;
-    os << std::setw((int)cell_w) << std::left << mtx.data_[0].c;
-
-    for (int i = 2; i < n; i++) {
-        os << std::setw((int)cell_w) << std::left << 0;
-    }
-
-    os << std::endl;
-
-    // Printing middle lines
-    for (int i = 1; i < n - 1; i++) {
-        for (int j = 0; j < i - 1; j++) {
-            os << std::setw((int)cell_w) << std::left << 0;
-        }
-
-        os << std::setw((int)cell_w) << std::left << mtx.data_[i].a;
-        os << std::setw((int)cell_w) << std::left << mtx.data_[i].b;
-        os << std::setw((int)cell_w) << std::left << mtx.data_[i].c;
-
-        for (int j = i + 2; j < n; j++) {
-            os << std::setw((int)cell_w) << std::left << 0;
-        }
-
-        os << std::endl;
-    }
-
-    // Printing last line
-    for (int i = 0; i < n - 2; i++) {
-        os << std::setw((int)cell_w) << std::left << 0;
-    }
-
-    os << std::setw((int)cell_w) << std::left << mtx.data_[n - 1].a;
-    os << std::setw((int)cell_w) << std::left << mtx.data_[n - 1].b;
-    os << std::endl;
-
-    return os;
+// Triplet getter realization
+const Triplet& TridiagonalMatrix::GetTriplet(unsigned int i) const {
+    return this->data_[i];
 }
 
-// Getter realization
-Triplet TridiagonalMatrix::GetTriplet(unsigned int i) const {
-    return data_[i];
+// Order getter realization
+unsigned int TridiagonalMatrix::GetOrder() const {
+    return this->order_;
 }

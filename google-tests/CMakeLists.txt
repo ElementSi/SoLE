@@ -6,16 +6,10 @@ add_subdirectory(lib)
 
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-set(TRIDIAGONAL_TESTS
-        tridiagonal_matrix_tests.cpp)
-set(TRIDIAGONAL_HEADER
-        ../tridiagonal_matrix/tridiagonal_matrix.h
-        ../tridiagonal_matrix/tridiagonal_matrix.cpp
-        ../tridiagonal_matrix/tridiagonal_matrix_solver.h
-        ../tridiagonal_matrix/tridiagonal_matrix_solver.cpp)
+file(GLOB_RECURSE TESTS
+        "*.cpp")
 
-add_library(tridiagonal_matrix STATIC ${TRIDIAGONAL_HEADER})
-add_executable(google_tests_run ${TRIDIAGONAL_TESTS})
+add_executable(google_tests_run ${TESTS})
 
 target_link_libraries(google_tests_run
         gtest
