@@ -6,8 +6,7 @@ add_subdirectory(lib)
 
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-file(GLOB_RECURSE TESTS
-        "*.cpp")
+file(GLOB_RECURSE TESTS "*.cpp")
 
 add_executable(google_tests_run ${TESTS})
 

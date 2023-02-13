@@ -9,5 +9,3 @@ file(GLOB_RECURSE TRIDIAGONAL_MATRIX
         "tridiagonal_matrix/*.cpp")
 
 add_library(tridiagonal_matrix STATIC ${TRIDIAGONAL_MATRIX})
-
-add_executable(main main.cpp)
