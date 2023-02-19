@@ -13,5 +13,4 @@ add_executable(google_tests_run ${TESTS})
 target_link_libraries(google_tests_run
         gtest
         gtest_main
-        tridiagonal_matrix
-        )
+        source)
