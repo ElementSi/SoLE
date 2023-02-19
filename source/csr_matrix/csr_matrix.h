@@ -41,6 +41,9 @@ namespace csr {
         [[nodiscard]] const std::vector<double>& GetValues() const;
         [[nodiscard]] const std::vector<unsigned int>& GetColumns() const;
         [[nodiscard]] const std::vector<unsigned int>& GetRows() const;
+
+        // Multiplication operator (*) for matrix & vector
+        std::vector<double> operator*(const std::vector<double>& v);
     };
 }
 

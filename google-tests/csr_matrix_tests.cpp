@@ -152,3 +152,60 @@ TEST(CSRTest, ZeroMatrixGetterTestM3x3) {
     EXPECT_EQ(A.GetElement(2, 1), 0);
     EXPECT_EQ(A.GetElement(2, 2), 0);
 }
+
+TEST(CSRTest, MultiplicationTestM3x3) {
+    CSRMatrix A{3,
+                3,
+                {
+                        {0, 0, 1},
+                        {0, 1, 2},
+                        {1, 1, 4},
+                        {2, 1, 2},
+                        {2, 2, 6}}};
+
+    std::vector<double> v {1, 0, 2};
+
+    auto B = A * v;
+
+    EXPECT_FLOAT_EQ(B[0], 1);
+    EXPECT_FLOAT_EQ(B[1], 0);
+    EXPECT_FLOAT_EQ(B[2], 12);
+}
+
+TEST(CSRTest, MultiplicationTestM5x3) {
+    CSRMatrix A{5,
+                3,
+                {
+                        {0, 0, 1},
+                        {0, 1, 2},
+                        {1, 1, 4},
+                        {2, 1, 2},
+                        {2, 2, 6},
+                        {3, 0, 7},
+                        {3, 1, 8},
+                        {3, 2, 9}}};
+
+    std::vector<double> v {1, 0, -2};
+
+    auto B = A * v;
+
+    EXPECT_FLOAT_EQ(B[0], 1);
+    EXPECT_FLOAT_EQ(B[1], 0);
+    EXPECT_FLOAT_EQ(B[2], -12);
+    EXPECT_FLOAT_EQ(B[3], -11);
+    EXPECT_FLOAT_EQ(B[4], 0);
+}
+
+TEST(CSRTest, ZeroMatrixMultiplicationTestM3x3) {
+    CSRMatrix A{3,
+                3,
+                {}};
+
+    std::vector<double> v {1, 0, 2};
+
+    auto B = A * v;
+
+    EXPECT_FLOAT_EQ(B[0], 0);
+    EXPECT_FLOAT_EQ(B[1], 0);
+    EXPECT_FLOAT_EQ(B[2], 0);
+}
