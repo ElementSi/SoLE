@@ -17,13 +17,14 @@ namespace trd {
         // Vector of elements of main and adjacent diagonals of matrix
         std::vector<Triplet> data_;
 
+        // Zero value for clear logic
+        double zero_ = 0;
+
         // Order of original square matrix
         unsigned int order_ = 0;
 
     public:
         // Constructors
-        TridiagonalMatrix() = default;
-
         TridiagonalMatrix(unsigned int,
                           const std::vector<double>&,
                           const std::vector<double>&,
@@ -32,8 +33,8 @@ namespace trd {
         TridiagonalMatrix(unsigned int,
                           std::vector<Triplet>&);
 
-        // Destructors
-        ~TridiagonalMatrix() = default;
+        // Element getter
+        [[nodiscard]] const double& GetElement(unsigned int, unsigned int) const;
 
         // Triplet getter
         [[nodiscard]] const Triplet& GetTriplet(unsigned int) const;

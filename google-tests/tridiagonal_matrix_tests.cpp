@@ -4,6 +4,18 @@
 
 using namespace trd;
 
+TEST(TridiagonalTest, GetterTestM5) {
+    TridiagonalMatrix A {5,
+                         {14.0, 2.0, 5.0, 7.0},
+                         {5.0, 6.0, 3.0, 2.0, 7.0},
+                         {1.0, 3.0, 2.0, 1.0}};
+    std::vector<double> f {2.0, 8.0, 43.0, 11.0, 2.0};
+
+    EXPECT_EQ(A.GetElement(0, 0), 5);
+    EXPECT_EQ(A.GetElement(0, 1), 1);
+    EXPECT_EQ(A.GetElement(0, 4), 0);
+}
+
 TEST(TridiagonalTest, SolverTestM5) {
     TridiagonalMatrix A {5,
                          {14.0, 2.0, 5.0, 7.0},

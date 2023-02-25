@@ -27,23 +27,21 @@ namespace csr {
         unsigned int width_ = 0;
 
     public:
-        // Constructors
-        CSRMatrix() = default;
+        // Constructor
+        CSRMatrix(unsigned int,
+                   unsigned int,
+                   const std::vector<Triplet>&);
 
-        CSRMatrix(unsigned int height,
-                   unsigned int width,
-                   const std::vector<Triplet>& DOK);
+        // Element getter
+        [[nodiscard]] const double& GetElement(unsigned int, unsigned int) const;
 
-        // Matrix element getter
-        [[nodiscard]] const double& GetElement(unsigned int i, unsigned int j) const;
-
-        // Matrix vectors getters
+        // Vectors getters
         [[nodiscard]] const std::vector<double>& GetValues() const;
         [[nodiscard]] const std::vector<unsigned int>& GetColumns() const;
         [[nodiscard]] const std::vector<unsigned int>& GetRows() const;
 
         // Multiplication operator (*) for matrix & vector
-        std::vector<double> operator*(const std::vector<double>& v);
+        std::vector<double> operator*(const std::vector<double>&);
     };
 }
 

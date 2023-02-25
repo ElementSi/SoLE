@@ -5,7 +5,7 @@ namespace csr {
     // It is assumed that elements in DOK are sorted
     CSRMatrix::CSRMatrix(unsigned int height,
                          unsigned int width,
-                         const std::vector<Triplet> &DOK_matrix) {
+                         const std::vector<Triplet>& DOK_matrix) {
         this->height_ = height;
         this->width_ = width;
 
@@ -40,7 +40,7 @@ namespace csr {
             this->row_.push_back(nonzero_elements_in_rows);
     };
 
-    // Matrix element getter realization
+    // Element getter realization
     const double& CSRMatrix::GetElement(unsigned int i, unsigned int j) const {
         // Return non-zero element
         for (unsigned int k = this->row_[i]; k != this->row_[i + 1]; k++) {
@@ -52,7 +52,7 @@ namespace csr {
         return this->zero_;
     }
 
-    // Matrix vectors getters realization
+    // Vectors getters realization
     const std::vector<double>& CSRMatrix::GetValues() const {
         return this->val_;
     }
@@ -66,19 +66,19 @@ namespace csr {
     }
 
     // Multiplication operator (*) for matrix & vector realization
-    std::vector<double> CSRMatrix::operator*(const std::vector<double>& input_vector) {
-        std::vector<double> answer;
+    std::vector<double> CSRMatrix::operator*(const std::vector<double>& input_v) {
+        std::vector<double> answer_v;
 
         for (unsigned int i = 0; i < this->height_; i++) {
             double answer_element = 0;
 
             for (unsigned int j = this->row_[i]; j < this->row_[i + 1]; j++) {
-                answer_element += input_vector[this->col_[j]] * this->val_[j];
+                answer_element += input_v[this->col_[j]] * this->val_[j];
             }
 
-            answer.push_back(answer_element);
+            answer_v.push_back(answer_element);
         }
 
-        return answer;
+        return answer_v;
     }
 }

@@ -3,9 +3,9 @@
 namespace trd {
     // Constructors realization
     TridiagonalMatrix::TridiagonalMatrix(unsigned int n,
-                                         const std::vector<double> &l_diag,
-                                         const std::vector<double> &m_diag,
-                                         const std::vector<double> &r_diag) {
+                                         const std::vector<double>& l_diag,
+                                         const std::vector<double>& m_diag,
+                                         const std::vector<double>& r_diag) {
         // Setting the data vector size equal to order of initial matrix
         this->data_.resize(n);
         this->order_ = n;
@@ -25,12 +25,21 @@ namespace trd {
         this->data_[n - 1].b = m_diag[n - 1];
     }
 
-    TridiagonalMatrix::TridiagonalMatrix(unsigned int n,
-                                         std::vector<Triplet> &v) :
-            data_(v), order_(n) {}
+    TridiagonalMatrix::TridiagonalMatrix(unsigned int n, std::vector<Triplet>& v): data_(v), order_(n) {}
+
+    // Element getter realization
+    [[nodiscard]] const double& TridiagonalMatrix::GetElement(unsigned int i, unsigned int j) const {
+        if (int(i) - int(j) == 1) return this->data_[i].a;
+
+        else if (int(i) - int(j) == 0) return this->data_[i].b;
+
+        else if (int(i) - int(j) == -1) return this->data_[i].c;
+
+        else return this->zero_;
+    }
 
     // Triplet getter realization
-    const Triplet &TridiagonalMatrix::GetTriplet(unsigned int i) const {
+    const Triplet& TridiagonalMatrix::GetTriplet(unsigned int i) const {
         return this->data_[i];
     }
 

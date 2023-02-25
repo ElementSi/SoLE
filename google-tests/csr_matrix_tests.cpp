@@ -165,11 +165,11 @@ TEST(CSRTest, MultiplicationTestM3x3) {
 
     std::vector<double> v {1, 0, 2};
 
-    auto B = A * v;
+    auto b = A * v;
 
-    EXPECT_FLOAT_EQ(B[0], 1);
-    EXPECT_FLOAT_EQ(B[1], 0);
-    EXPECT_FLOAT_EQ(B[2], 12);
+    EXPECT_FLOAT_EQ(b[0], 1);
+    EXPECT_FLOAT_EQ(b[1], 0);
+    EXPECT_FLOAT_EQ(b[2], 12);
 }
 
 TEST(CSRTest, MultiplicationTestM5x3) {
@@ -187,13 +187,13 @@ TEST(CSRTest, MultiplicationTestM5x3) {
 
     std::vector<double> v {1, 0, -2};
 
-    auto B = A * v;
+    auto b = A * v;
 
-    EXPECT_FLOAT_EQ(B[0], 1);
-    EXPECT_FLOAT_EQ(B[1], 0);
-    EXPECT_FLOAT_EQ(B[2], -12);
-    EXPECT_FLOAT_EQ(B[3], -11);
-    EXPECT_FLOAT_EQ(B[4], 0);
+    EXPECT_FLOAT_EQ(b[0], 1);
+    EXPECT_FLOAT_EQ(b[1], 0);
+    EXPECT_FLOAT_EQ(b[2], -12);
+    EXPECT_FLOAT_EQ(b[3], -11);
+    EXPECT_FLOAT_EQ(b[4], 0);
 }
 
 TEST(CSRTest, ZeroMatrixMultiplicationTestM3x3) {
@@ -203,9 +203,9 @@ TEST(CSRTest, ZeroMatrixMultiplicationTestM3x3) {
 
     std::vector<double> v {1, 0, 2};
 
-    auto B = A * v;
+    auto b = A * v;
 
-    EXPECT_FLOAT_EQ(B[0], 0);
-    EXPECT_FLOAT_EQ(B[1], 0);
-    EXPECT_FLOAT_EQ(B[2], 0);
+    EXPECT_FLOAT_EQ(b[0], 0);
+    EXPECT_FLOAT_EQ(b[1], 0);
+    EXPECT_FLOAT_EQ(b[2], 0);
 }
