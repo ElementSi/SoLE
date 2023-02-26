@@ -25,19 +25,19 @@ namespace trd {
 
     public:
         // Constructors
-        TridiagonalMatrix(unsigned int,
-                          const std::vector<double>&,
-                          const std::vector<double>&,
-                          const std::vector<double>&);
+        TridiagonalMatrix(unsigned int order,
+                          const std::vector<double> &l_diag,
+                          const std::vector<double> &m_diag,
+                          const std::vector<double> &r_diag);
 
-        TridiagonalMatrix(unsigned int,
-                          std::vector<Triplet>&);
+        TridiagonalMatrix(unsigned int order,
+                          std::vector<Triplet> &input_v);
 
         // Element getter
-        [[nodiscard]] const double& GetElement(unsigned int, unsigned int) const;
+        [[nodiscard]] const double &GetElement(unsigned int i, unsigned int j) const;
 
         // Triplet getter
-        [[nodiscard]] const Triplet& GetTriplet(unsigned int) const;
+        [[nodiscard]] const Triplet &GetTriplet(unsigned int i) const;
 
         // Order getter
         [[nodiscard]] unsigned int GetOrder() const;

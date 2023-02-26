@@ -24,7 +24,7 @@ namespace trd {
         // Calculation of x_(n - 1)
         x[n - 1] = (f[n - 1] - A.GetTriplet(n - 1).a * q[n - 1]) / (A.GetTriplet(n - 1).a * p[n - 1] + A.GetTriplet(n - 1).b);
 
-        // Calculation of x_j (j = n - 2, n - 3,..., n - 0)
+        // Calculation of x_j (j = n - 2, n - 3,..., 0)
         for (int i = (int)n - 2; i >= 0; i--) {
             x[i] = p[i + 1] * x[i + 1] + q[i + 1];
         }

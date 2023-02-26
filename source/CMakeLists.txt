@@ -3,7 +3,7 @@ project(source)
 set(CMAKE_CXX_STANDARD 20)
 
 file(GLOB_RECURSE SOURCE
-        "*/*.h"
-        "*/*.cpp")
+        "*.h"
+        "*.cpp")
 
 add_library(source STATIC ${SOURCE})

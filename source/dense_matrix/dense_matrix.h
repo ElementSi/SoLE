@@ -16,18 +16,18 @@ namespace dns {
 
     public:
         // Constructor
-        DenseMatrix(unsigned int,
-                    unsigned int,
-                    std::vector<double> );
+        DenseMatrix(unsigned int height,
+                    unsigned int width,
+                    std::vector<double> input_v);
 
         // Element getter
-        [[nodiscard]] const double& GetElement(unsigned int, unsigned int) const;
+        [[nodiscard]] const double &GetElement(unsigned int i, unsigned int j) const;
 
         // Data vector getter
-        [[nodiscard]] const std::vector<double>& GetValues() const;
+        [[nodiscard]] const std::vector<double> &GetValues() const;
 
         // Multiplication operator (*) for matrix & vector
-        std::vector<double> operator*(const std::vector<double>&);
+        std::vector<double> operator*(const std::vector<double> &input_v);
     };
 }
 

@@ -51,7 +51,5 @@ TEST(VectorTest, ScalarMultiplicationV3) {
 
     auto answer = v1 * v2;
 
-    EXPECT_FLOAT_EQ(answer[0], 4);
-    EXPECT_FLOAT_EQ(answer[1], 6);
-    EXPECT_FLOAT_EQ(answer[2], 6);
+    EXPECT_FLOAT_EQ(answer, 16);
 }
