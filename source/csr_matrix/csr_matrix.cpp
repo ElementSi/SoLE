@@ -48,7 +48,7 @@ namespace csr {
     };
 
     // Element getter realization
-    const double &CSRMatrix::GetElement(unsigned int i, unsigned int j) const {
+    double CSRMatrix::GetElement(unsigned int i, unsigned int j) const {
         // Return non-zero element
         for (unsigned int k = this->row_[i]; k != this->row_[i + 1]; k++) {
             if (this->col_[k] == j)
@@ -57,6 +57,16 @@ namespace csr {
 
         // Return zero element
         return this->zero_;
+    }
+
+    // Height getter realization
+    [[nodiscard]] unsigned int CSRMatrix::GetHeight() const {
+        return this->height_;
+    }
+
+    // Width getter realization
+    [[nodiscard]] unsigned int CSRMatrix::GetWidth() const {
+        return this->width_;
     }
 
     // Vectors getters realization

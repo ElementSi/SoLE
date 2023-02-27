@@ -34,7 +34,7 @@ namespace trd {
                           std::vector<Triplet> &input_v);
 
         // Element getter
-        [[nodiscard]] const double &GetElement(unsigned int i, unsigned int j) const;
+        [[nodiscard]] double GetElement(unsigned int i, unsigned int j) const;
 
         // Triplet getter
         [[nodiscard]] const Triplet &GetTriplet(unsigned int i) const;

@@ -31,7 +31,7 @@ namespace trd {
             order_(order) {}
 
     // Element getter realization
-    [[nodiscard]] const double &TridiagonalMatrix::GetElement(unsigned int i, unsigned int j) const {
+    [[nodiscard]] double TridiagonalMatrix::GetElement(unsigned int i, unsigned int j) const {
         if (int(i) - int(j) == 1) return this->data_[i].a;
 
         else if (int(i) - int(j) == 0) return this->data_[i].b;

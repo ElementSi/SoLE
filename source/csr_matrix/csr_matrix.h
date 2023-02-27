@@ -33,7 +33,13 @@ namespace csr {
                   const std::vector<Triplet> &DOK);
 
         // Element getter
-        [[nodiscard]] const double &GetElement(unsigned int i, unsigned int j) const;
+        [[nodiscard]] double GetElement(unsigned int i, unsigned int j) const;
+
+        // Height getter
+        [[nodiscard]] unsigned int GetHeight() const;
+
+        // Width getter
+        [[nodiscard]] unsigned int GetWidth() const;
 
         // Vectors getters
         [[nodiscard]] const std::vector<double> &GetValues() const;
