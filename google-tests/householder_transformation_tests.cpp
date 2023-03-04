@@ -119,7 +119,7 @@ TEST(HouseholderTest, TestM1000) {
     std::vector<double> init_vector;
     init_vector.reserve(m * n);
 
-    double lower_bound = 1;
+    double lower_bound = -100;
     double upper_bound = 100;
 
     std::uniform_real_distribution<double> random_double(lower_bound,
