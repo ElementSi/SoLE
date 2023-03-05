@@ -8,5 +8,4 @@
 std::vector<double> SolveIterativeMethod(const csr::CSRMatrix A,
                                          const std::vector<double> &b);
 
-
 #endif //SOLE_ITERATIVE_METHODS_H
