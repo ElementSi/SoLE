@@ -11,13 +11,9 @@ std::vector<double> SolveSimpleIteration(const csr::CSRMatrix &A,
     // Solutions column
     std::vector<double> x = x_0;
 
-    // The second (euclidean) norm of the residual column
-    double current_r_norm = abs(b - A * x_0);
-
     // Iteration
-    while (current_r_norm > target_r_norm) {
+    while (abs(b - A * x) > target_r_norm) {
         x = x - tau * (A * x - b);
-        current_r_norm = abs(b - A * x);
     }
 
     return x;
@@ -32,15 +28,11 @@ unsigned int CountSimpleIteration(const csr::CSRMatrix &A,
     // Solutions column
     std::vector<double> x = x_0;
 
-    // The second (euclidean) norm of the residual column
-    double current_r_norm = abs(b - A * x_0);
-
     unsigned int counter = 0;
 
     // Iteration
-    while (current_r_norm > target_r_norm) {
+    while (abs(b - A * x) > target_r_norm) {
         x = x - tau * (A * x - b);
-        current_r_norm = abs(b - A * x);
         counter++;
     }
 
@@ -81,9 +73,6 @@ std::vector<double> SolveJacoby(const csr::CSRMatrix &A,
     std::vector<double> x_prev = x_0;
     std::vector<double> x_next(dim);
 
-    // The second (euclidean) norm of the residual column
-    double current_r_norm = abs(b - A * x_0);
-
     // Getting A matrix structure vectors for more efficient calculation
     const std::vector<double> &val = A.GetValues();
     const std::vector<unsigned int> &row = A.GetRows();
@@ -91,19 +80,21 @@ std::vector<double> SolveJacoby(const csr::CSRMatrix &A,
 
     // Iteration
     double sub_product;
-    while (current_r_norm > target_r_norm) {
+    double main_diag_element;
+    while (abs(b - A * x_prev) > target_r_norm) {
         for (unsigned int i = 0; i < dim; i++) {
             sub_product = 0;
 
             for (unsigned int j = row[i]; j < row[i + 1]; j++) {
-                if (i == col[j]) continue;
-                sub_product += x_prev[col[j]] * val[j];
+                if (i == col[j])
+                    main_diag_element;
+
+                else
+                    sub_product += x_prev[col[j]] * val[j];
             }
 
-            x_next[i] = (1.0 / A.GetElement(i, i)) * (b[i] - sub_product);
+            x_next[i] = (1.0 / main_diag_element) * (b[i] - sub_product);
         }
-
-        current_r_norm = abs(b - A * x_next);
 
         x_prev = x_next;
     }
@@ -134,16 +125,20 @@ void RecordJacoby(const csr::CSRMatrix &A,
 
     // Iteration
     double sub_product;
+    double main_diag_element;
     for (unsigned int k = 0; k < iterations_number; k++) {
         for (unsigned int i = 0; i < dim; i++) {
             sub_product = 0;
 
             for (unsigned int j = row[i]; j < row[i + 1]; j++) {
-                if (i == col[j]) continue;
-                sub_product += x_prev[col[j]] * val[j];
+                if (i == col[j])
+                    main_diag_element;
+
+                else
+                    sub_product += x_prev[col[j]] * val[j];
             }
 
-            x_next[i] = (1.0 / A.GetElement(i, i)) * (b[i] - sub_product);
+            x_next[i] = (1.0 / main_diag_element) * (b[i] - sub_product);
         }
 
         fs << abs(b - A * x_prev) << std::endl;
@@ -164,9 +159,6 @@ std::vector<double> SolveGaussSeidel(const csr::CSRMatrix &A,
     // Solutions column
     std::vector<double> x = x_0;
 
-    // The second (euclidean) norm of the residual column
-    double current_r_norm = abs(b - A * x_0);
-
     // Getting A matrix structure vectors for more efficient calculation
     const std::vector<double> &val = A.GetValues();
     const std::vector<unsigned int> &row = A.GetRows();
@@ -175,25 +167,25 @@ std::vector<double> SolveGaussSeidel(const csr::CSRMatrix &A,
     // Iteration
     double upper_sub_product;
     double lower_sub_product;
-    while (current_r_norm > target_r_norm) {
+    double main_diag_element;
+    while (abs(b - A * x) > target_r_norm) {
         for (unsigned int i = 0; i < dim; i++) {
             upper_sub_product = 0;
             lower_sub_product = 0;
 
             for (unsigned int j = row[i]; j < row[i + 1]; j++) {
-                if (col[j] >= i) continue;
-                upper_sub_product += x[col[j]] * val[j];
+                if (col[j] < i)
+                    upper_sub_product += x[col[j]] * val[j];
+
+                else if (col[j] > i)
+                    lower_sub_product += x[col[j]] * val[j];
+
+                else
+                    main_diag_element = val[j];
             }
 
-            for (unsigned int j = row[i]; j < row[i + 1]; j++) {
-                if (col[j] <= i) continue;
-                lower_sub_product += x[col[j]] * val[j];
-            }
-
-            x[i] = (1.0 / A.GetElement(i, i)) * (b[i] - upper_sub_product - lower_sub_product);
+            x[i] = (1.0 / main_diag_element) * (b[i] - upper_sub_product - lower_sub_product);
         }
-
-        current_r_norm = abs(b - A * x);
     }
 
     return x;
@@ -222,6 +214,7 @@ void RecordGaussSeidel(const csr::CSRMatrix &A,
     // Iteration
     double upper_sub_product;
     double lower_sub_product;
+    double main_diag_element;
     for (unsigned int k = 0; k < iterations_number; k++) {
         fs << abs(b - A * x) << std::endl;
 
@@ -230,16 +223,17 @@ void RecordGaussSeidel(const csr::CSRMatrix &A,
             lower_sub_product = 0;
 
             for (unsigned int j = row[i]; j < row[i + 1]; j++) {
-                if (col[j] >= i) continue;
-                upper_sub_product += x[col[j]] * val[j];
+                if (col[j] < i)
+                    upper_sub_product += x[col[j]] * val[j];
+
+                else if (col[j] > i)
+                    lower_sub_product += x[col[j]] * val[j];
+
+                else
+                    main_diag_element = val[j];
             }
 
-            for (unsigned int j = row[i]; j < row[i + 1]; j++) {
-                if (col[j] <= i) continue;
-                lower_sub_product += x[col[j]] * val[j];
-            }
-
-            x[i] = (1.0 / A.GetElement(i, i)) * (b[i] - upper_sub_product - lower_sub_product);
+            x[i] = (1.0 / main_diag_element) * (b[i] - upper_sub_product - lower_sub_product);
         }
     }
 
