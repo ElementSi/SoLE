@@ -87,7 +87,7 @@ std::vector<double> SolveJacoby(const csr::CSRMatrix &A,
 
             for (unsigned int j = row[i]; j < row[i + 1]; j++) {
                 if (i == col[j])
-                    main_diag_element;
+                    main_diag_element = val[j];
 
                 else
                     sub_product += x_prev[col[j]] * val[j];
@@ -132,7 +132,7 @@ void RecordJacoby(const csr::CSRMatrix &A,
 
             for (unsigned int j = row[i]; j < row[i + 1]; j++) {
                 if (i == col[j])
-                    main_diag_element;
+                    main_diag_element = val[j];
 
                 else
                     sub_product += x_prev[col[j]] * val[j];
