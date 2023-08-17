@@ -3,7 +3,7 @@
 #include <utility>
 
 namespace dns {
-    // Constructor realization
+    // Constructor
     DenseMatrix::DenseMatrix(unsigned int height,
                              unsigned int width,
                              std::vector<double> input_v) :
@@ -11,7 +11,7 @@ namespace dns {
             width_(width),
             data_(std::move(input_v)) {}
 
-    // Element getter realization
+    // Element getter
     double DenseMatrix::GetElement(unsigned int i, unsigned int j) const {
         return this->data_[i * this->width_ + j];
     }
@@ -40,22 +40,22 @@ namespace dns {
         return row;
     }
 
-    // Height getter realization
+    // Height getter
     [[nodiscard]] unsigned int DenseMatrix::GetHeight() const {
         return this->height_;
     }
 
-    // Width getter realization
+    // Width getter
     [[nodiscard]] unsigned int DenseMatrix::GetWidth() const {
         return this->width_;
     }
 
-    // Data vector getter realization
+    // Data vector getter
     const std::vector<double> &DenseMatrix::GetValues() const {
         return this->data_;
     }
 
-    // Element setter realization
+    // Element setter
     void DenseMatrix::SetElement(unsigned int i, unsigned int j, double new_element) {
         this->data_[i * this->width_ + j] = new_element;
     }
@@ -79,7 +79,7 @@ namespace dns {
         return {this->height_, input_m.GetWidth(), answer_v};
     }
 
-    // Multiplication operator* for matrix & vector realization
+    // Multiplication operator* for matrix & vector
     std::vector<double> DenseMatrix::operator*(const std::vector<double> &input_v) const {
         std::vector<double> answer_v;
         answer_v.reserve(this->height_);
@@ -97,7 +97,7 @@ namespace dns {
         return answer_v;
     }
 
-    // Multiplication operator* for matrix & scalar realization
+    // Multiplication operator* for matrix & scalar
     DenseMatrix DenseMatrix::operator*(double s) const {
         std::vector<double> answer_v;
         answer_v.reserve(this->height_ * this->width_);
@@ -111,12 +111,12 @@ namespace dns {
         return {this->height_, this->width_, answer_v};
     }
 
-    // Division operator/ for matrix & scalar realization
+    // Division operator/ for matrix & scalar
     DenseMatrix DenseMatrix::operator/(double s) const {
         return *this * (1 / s);
     }
 
-    // Addition operator+ for matrices realization
+    // Addition operator+ for matrices
     DenseMatrix DenseMatrix::operator+(const DenseMatrix &input_m) const {
         std::vector<double> answer_v;
         answer_v.reserve(this->height_ * this->width_);
@@ -130,7 +130,7 @@ namespace dns {
         return {this->height_, this->width_, answer_v};
     }
 
-    // Subtraction operator- for matrices realization
+    // Subtraction operator- for matrices
     DenseMatrix DenseMatrix::operator-(const DenseMatrix &input_m) const {
         std::vector<double> answer_v;
         answer_v.reserve(this->height_ * this->width_);
@@ -156,7 +156,7 @@ namespace dns {
         return true;
     }
 
-    // Square matrix with ones on the main diagonal and zeros elsewhere realization
+    // Square matrix with ones on the main diagonal and zeros elsewhere
     DenseMatrix IdentityMatrix(unsigned int order) {
         std::vector<double> temp_vector(order * order, 0.0);
 

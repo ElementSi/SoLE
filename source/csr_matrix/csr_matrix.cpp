@@ -1,7 +1,7 @@
 #include "csr_matrix.h"
 
 namespace csr {
-    // Constructors realization
+    // Constructors
     // It is assumed that elements in DOK are sorted
     CSRMatrix::CSRMatrix(unsigned int height,
                          unsigned int width,
@@ -47,7 +47,7 @@ namespace csr {
             this->row_.push_back(nonzero_elements_in_rows);
     };
 
-    // Element getter realization
+    // Element getter
     double CSRMatrix::GetElement(unsigned int i, unsigned int j) const {
         // Return non-zero element
         for (unsigned int k = this->row_[i]; k != this->row_[i + 1]; k++) {
@@ -59,17 +59,17 @@ namespace csr {
         return this->zero_;
     }
 
-    // Height getter realization
+    // Height getter
     [[nodiscard]] unsigned int CSRMatrix::GetHeight() const {
         return this->height_;
     }
 
-    // Width getter realization
+    // Width getter
     [[nodiscard]] unsigned int CSRMatrix::GetWidth() const {
         return this->width_;
     }
 
-    // Vectors getters realization
+    // Vectors getters
     const std::vector<double> &CSRMatrix::GetValues() const {
         return this->val_;
     }
@@ -82,7 +82,7 @@ namespace csr {
         return this->row_;
     }
 
-    // Multiplication operator (*) for matrix & vector realization
+    // Multiplication operator (*) for matrix & vector
     std::vector<double> CSRMatrix::operator*(const std::vector<double> &input_v) const {
         std::vector<double> answer_v;
         answer_v.reserve(this->height_);

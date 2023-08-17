@@ -1,7 +1,7 @@
 #include "tridiagonal_matrix_solver.h"
 
 namespace trd {
-    // Function to solve SoLE realization
+    // Function to solve SoLE
     std::vector<double> SolveTridiagonalMatrix(unsigned int n,
                                                const TridiagonalMatrix &A,
                                                const std::vector<double> &f) {

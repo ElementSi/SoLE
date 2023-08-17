@@ -1,7 +1,7 @@
 #include "tridiagonal_matrix.h"
 
 namespace trd {
-    // Constructors realization
+    // Constructors
     TridiagonalMatrix::TridiagonalMatrix(unsigned int order,
                                          const std::vector<double> &l_diag,
                                          const std::vector<double> &m_diag,
@@ -30,7 +30,7 @@ namespace trd {
             data_(input_v),
             order_(order) {}
 
-    // Element getter realization
+    // Element getter
     [[nodiscard]] double TridiagonalMatrix::GetElement(unsigned int i, unsigned int j) const {
         if (int(i) - int(j) == 1) return this->data_[i].a;
 
@@ -41,12 +41,12 @@ namespace trd {
         else return this->zero_;
     }
 
-    // Triplet getter realization
+    // Triplet getter
     const Triplet &TridiagonalMatrix::GetTriplet(unsigned int i) const {
         return this->data_[i];
     }
 
-    // Order getter realization
+    // Order getter
     unsigned int TridiagonalMatrix::GetOrder() const {
         return this->order_;
     }
