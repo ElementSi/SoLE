@@ -62,7 +62,7 @@ void RecordSimpleIteration(const csr::CSRMatrix &A,
     fs.close();
 }
 
-// Jacobi's method realization
+// Jacobi method realization
 std::vector<double> SolveJacoby(const csr::CSRMatrix &A,
                                 const std::vector<double> &b,
                                 const std::vector<double> &x_0,

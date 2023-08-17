@@ -69,7 +69,7 @@ double operator*(const std::vector<double> &v1, const std::vector<double> &v2) {
 
 // Absolute value (euclidean norm) of vector realization
 double abs(const std::vector<double> &v) {
-    return sqrt(std::inner_product(v.begin(),v.end(),v.begin(),0.0));
+    return sqrt(v * v);
 }
 
 // Dyad (as a product of vectors) realization

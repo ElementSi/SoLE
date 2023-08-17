@@ -49,7 +49,7 @@ namespace csr {
         [[nodiscard]] const std::vector<unsigned int> &GetRows() const;
 
         // Multiplication operator (*) for matrix & vector
-        std::vector<double> operator*(const std::vector<double> &input_v);
+        std::vector<double> operator*(const std::vector<double> &input_v) const;
     };
 }
 

@@ -83,12 +83,13 @@ namespace csr {
     }
 
     // Multiplication operator (*) for matrix & vector realization
-    std::vector<double> CSRMatrix::operator*(const std::vector<double> &input_v) {
+    std::vector<double> CSRMatrix::operator*(const std::vector<double> &input_v) const {
         std::vector<double> answer_v;
         answer_v.reserve(this->height_);
+        double answer_element = 0;
 
         for (unsigned int i = 0; i < this->height_; i++) {
-            double answer_element = 0;
+            answer_element = 0;
 
             for (unsigned int j = this->row_[i]; j < this->row_[i + 1]; j++) {
                 answer_element += input_v[this->col_[j]] * this->val_[j];
