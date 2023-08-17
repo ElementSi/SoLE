@@ -151,7 +151,7 @@ TEST(HouseholderTest, TestM1000) {
     // Triangularity test for R matrix
     for (unsigned int i = 1; i < m; i++) {
         for (unsigned int j = 0; j < std::min(i, n); j++)
-            EXPECT_EQ(QR_pair.second.GetElement(i, j), 0);
+            EXPECT_FLOAT_EQ(QR_pair.second.GetElement(i, j), 0);
     }
 
     for (unsigned int i = 0; i < m; i++) {
