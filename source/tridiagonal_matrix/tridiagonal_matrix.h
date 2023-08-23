@@ -3,25 +3,25 @@
 
 #include <vector>
 
-namespace trd {
+namespace trd
+{
     // Struct of triplet for DOK realization
-    struct Triplet {
+    struct Triplet
+    {
         double a;
         double b;
         double c;
     };
 
     // Class allowing to store square tridiagonal matrix compactly
-    class TridiagonalMatrix {
+    class TridiagonalMatrix
+    {
     private:
         // Vector of elements of main and adjacent diagonals of matrix
         std::vector<Triplet> data_;
 
-        // Zero value for clear logic
-        double zero_ = 0;
-
         // Order of original square matrix
-        unsigned int order_ = 0;
+        unsigned int order_;
 
     public:
         // Constructors
@@ -31,7 +31,7 @@ namespace trd {
                           const std::vector<double> &r_diag);
 
         TridiagonalMatrix(unsigned int order,
-                          std::vector<Triplet> &input_v);
+                          const std::vector<Triplet> &input_v);
 
         // Element getter
         [[nodiscard]] double GetElement(unsigned int i, unsigned int j) const;

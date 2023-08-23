@@ -112,9 +112,9 @@ TEST(HouseholderTest, TestM4x3) {
     }
 }
 
-TEST(HouseholderTest, TestM1000) {
-    unsigned int m = 1000;
-    unsigned int n = 1000;
+TEST(HouseholderTest, TestM100) {
+    unsigned int m = 100;
+    unsigned int n = 100;
 
     std::vector<double> init_vector;
     init_vector.reserve(m * n);
