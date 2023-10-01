@@ -70,6 +70,11 @@ namespace dns
         this->data_[i * this->width_ + j] = new_element;
     }
 
+    // Element getter & setter through () operator
+    [[nodiscard]] double& DenseMatrix::operator()(size_t i, size_t j) {
+        return this->data_[i * this->width_ + j];
+    }
+
     // Multiplication operator* for matrices
     DenseMatrix DenseMatrix::operator*(const DenseMatrix& input_m) const
     {

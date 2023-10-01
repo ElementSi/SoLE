@@ -42,6 +42,27 @@ TEST(CSRTest, GetterTestM3x3)
     EXPECT_EQ(A.GetElement(2, 2), 6);
 }
 
+TEST(CSRTest, BraceGetterTestM3x3)
+{
+    CSRMatrix A {3,
+                 3,
+                 {{0, 0, 1},
+                  {0, 1, 2},
+                  {1, 1, 4},
+                  {2, 1, 2},
+                  {2, 2, 6}}};
+
+    EXPECT_EQ(A(0, 0), 1);
+    EXPECT_EQ(A(0, 1), 2);
+    EXPECT_EQ(A(0, 2), 0);
+    EXPECT_EQ(A(1, 0), 0);
+    EXPECT_EQ(A(1, 1), 4);
+    EXPECT_EQ(A(1, 2), 0);
+    EXPECT_EQ(A(2, 0), 0);
+    EXPECT_EQ(A(2, 1), 2);
+    EXPECT_EQ(A(2, 2), 6);
+}
+
 TEST(CSRTest, ZeroRowConstructorTestM3x3)
 {
     CSRMatrix A {3,

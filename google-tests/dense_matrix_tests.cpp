@@ -108,6 +108,26 @@ TEST(DenseTest, SetterTestM3)
     EXPECT_EQ(A.GetElement(2, 2), 9);
 }
 
+TEST(DenseTest, BreceTestM3)
+{
+    DenseMatrix A {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+
+    A(0, 0) = 8.9;
+    A(0, 2) = 0.0;
+
+    EXPECT_EQ(A(0, 0), 8.9);
+    EXPECT_EQ(A(0, 1), 2);
+    EXPECT_EQ(A(0, 2), 0.0);
+    EXPECT_EQ(A(1, 0), 4);
+    EXPECT_EQ(A(1, 1), 5);
+    EXPECT_EQ(A(1, 2), 6);
+    EXPECT_EQ(A(2, 0), 7);
+    EXPECT_EQ(A(2, 1), 8);
+    EXPECT_EQ(A(2, 2), 9);
+}
+
 TEST(DenseTest, onMatrixMultiplicationTestM3xM3)
 {
     DenseMatrix A {3,

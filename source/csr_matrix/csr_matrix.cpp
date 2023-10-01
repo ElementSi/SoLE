@@ -66,6 +66,20 @@ namespace csr
         return 0;
     }
 
+    // Element getter through () operator
+    [[nodiscard]] double CSRMatrix::operator()(size_t i, size_t j) const
+    {
+        // Return non-zero element
+        for (size_t k = this->row_[i]; k != this->row_[i + 1]; ++k) {
+            if (this->col_[k] == j) {
+                return this->val_[k];
+            }
+        }
+
+        // Return zero element
+        return 0;
+    }
+
     // Height getter
     [[nodiscard]] size_t CSRMatrix::GetHeight() const
     {

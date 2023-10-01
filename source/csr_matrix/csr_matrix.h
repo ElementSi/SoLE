@@ -35,6 +35,9 @@ namespace csr
         // Element getter
         [[nodiscard]] double GetElement(size_t i, size_t j) const;
 
+        // Element getter through () operator
+        [[nodiscard]] double operator()(size_t i, size_t j) const;
+
         // Height getter
         [[nodiscard]] size_t GetHeight() const;
 

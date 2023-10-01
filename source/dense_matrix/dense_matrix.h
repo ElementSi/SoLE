@@ -43,6 +43,9 @@ namespace dns
         // Element setter
         void SetElement(size_t i, size_t j, double new_element);
 
+        // Element getter & setter through () operator
+        [[nodiscard]] double& operator()(size_t i, size_t j);
+
         // Multiplication operator* for matrices
         DenseMatrix operator*(const DenseMatrix& input_m) const;
 

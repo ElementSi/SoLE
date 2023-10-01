@@ -24,7 +24,7 @@ std::pair<dns::DenseMatrix, dns::DenseMatrix> HouseholderTransform(const dns::De
     double temp_ratio = 2 / (v * v);
     double temp_composition = (v * a);
 
-    R.SetElement(0, 0, R.GetElement(0, 0) - temp_ratio * temp_composition * v[0]);
+    R.SetElement(0, 0, R(0, 0) - temp_ratio * temp_composition * v[0]);
 
     for (size_t i = 1; i < height; ++i) {
         R.SetElement(i, 0, 0);
@@ -35,11 +35,11 @@ std::pair<dns::DenseMatrix, dns::DenseMatrix> HouseholderTransform(const dns::De
 
         // Scalar multiplication of v and a_i vectors
         for (size_t i = 0; i < height; ++i) {
-            temp_composition += R.GetElement(i, j) * v[i];
+            temp_composition += R(i, j) * v[i];
         }
 
         for (size_t i = 0; i < height; ++i) {
-            R.SetElement(i, j, R.GetElement(i, j) - temp_ratio * temp_composition * v[i]);
+            R.SetElement(i, j, R(i, j) - temp_ratio * temp_composition * v[i]);
         }
     }
 
@@ -59,7 +59,7 @@ std::pair<dns::DenseMatrix, dns::DenseMatrix> HouseholderTransform(const dns::De
         temp_ratio = 2 / (v * v);
         temp_composition = (v * a);
 
-        R.SetElement(k, k, R.GetElement(k, k) - temp_ratio * temp_composition * v[k]);
+        R.SetElement(k, k, R(k, k) - temp_ratio * temp_composition * v[k]);
 
         for (size_t i = k + 1; i < height; ++i) {
             R.SetElement(i, k, 0);
@@ -70,11 +70,11 @@ std::pair<dns::DenseMatrix, dns::DenseMatrix> HouseholderTransform(const dns::De
 
             // Scalar multiplication of v and a_i vectors
             for (size_t i = k; i < height; ++i) {
-                temp_composition += R.GetElement(i, j) * v[i];
+                temp_composition += R(i, j) * v[i];
             }
 
             for (size_t i = k; i < height; ++i) {
-                R.SetElement(i, j, R.GetElement(i, j) - temp_ratio * temp_composition * v[i]);
+                R.SetElement(i, j, R(i, j) - temp_ratio * temp_composition * v[i]);
             }
         }
 
@@ -84,11 +84,11 @@ std::pair<dns::DenseMatrix, dns::DenseMatrix> HouseholderTransform(const dns::De
 
             // Scalar multiplication of v and q_i vectors
             for (size_t i = k; i < order; ++i) {
-                temp_composition += Q.GetElement(j, i) * v[i];
+                temp_composition += Q(j, i) * v[i];
             }
 
             for (size_t i = k; i < order; ++i) {
-                Q.SetElement(j, i, Q.GetElement(j, i) - temp_ratio * temp_composition * v[i]);
+                Q.SetElement(j, i, Q(j, i) - temp_ratio * temp_composition * v[i]);
             }
         }
     }
