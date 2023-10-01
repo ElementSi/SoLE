@@ -21,26 +21,26 @@ namespace trd
         std::vector<Triplet> data_;
 
         // Order of original square matrix
-        unsigned int order_;
+        size_t order_;
 
     public:
         // Constructors
-        TridiagonalMatrix(unsigned int order,
-                          const std::vector<double> &l_diag,
-                          const std::vector<double> &m_diag,
-                          const std::vector<double> &r_diag);
+        TridiagonalMatrix(size_t order,
+                          const std::vector<double>& l_diag,
+                          const std::vector<double>& m_diag,
+                          const std::vector<double>& r_diag);
 
-        TridiagonalMatrix(unsigned int order,
-                          const std::vector<Triplet> &input_v);
+        TridiagonalMatrix(size_t order,
+                          const std::vector<Triplet>& input_v);
 
         // Element getter
-        [[nodiscard]] double GetElement(unsigned int i, unsigned int j) const;
+        [[nodiscard]] double GetElement(size_t i, size_t j) const;
 
         // Triplet getter
-        [[nodiscard]] const Triplet &GetTriplet(unsigned int i) const;
+        [[nodiscard]] const Triplet& GetTriplet(size_t i) const;
 
         // Order getter
-        [[nodiscard]] unsigned int GetOrder() const;
+        [[nodiscard]] size_t GetOrder() const;
     };
 
 }

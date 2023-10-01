@@ -5,19 +5,21 @@
 
 using namespace dns;
 
-TEST(DenseTest, ConstructorTestM3) {
-    DenseMatrix A{3,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9}};
-    std::vector<double> values{1, 2, 3, 4, 5, 6, 7, 8, 9};
+TEST(DenseTest, ConstructorTestM3)
+{
+    DenseMatrix A {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+    std::vector<double> values {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
     EXPECT_EQ(A.GetValues(), values);
 }
 
-TEST(DenseTest, GetterTestM3) {
-    DenseMatrix A{3,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+TEST(DenseTest, GetterTestM3)
+{
+    DenseMatrix A {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
 
     EXPECT_EQ(A.GetElement(0, 0), 1);
     EXPECT_EQ(A.GetElement(0, 1), 2);
@@ -30,61 +32,67 @@ TEST(DenseTest, GetterTestM3) {
     EXPECT_EQ(A.GetElement(2, 2), 9);
 }
 
-TEST(DenseTest, ColGetterTestM3) {
-    DenseMatrix A{3,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9}};
-    std::vector<double> a_0{1, 4, 7};
-    std::vector<double> a_1{2, 5, 8};
-    std::vector<double> a_2{3, 6, 9};
+TEST(DenseTest, ColGetterTestM3)
+{
+    DenseMatrix A {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+    std::vector<double> a_0 {1, 4, 7};
+    std::vector<double> a_1 {2, 5, 8};
+    std::vector<double> a_2 {3, 6, 9};
 
     EXPECT_EQ(A.GetColumn(0), a_0);
     EXPECT_EQ(A.GetColumn(1), a_1);
     EXPECT_EQ(A.GetColumn(2), a_2);
 }
 
-TEST(DenseTest, RowGetterTestM3) {
-    DenseMatrix A{3,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9}};
-    std::vector<double> a_0{1, 2, 3};
-    std::vector<double> a_1{4, 5, 6};
-    std::vector<double> a_2{7, 8, 9};
+TEST(DenseTest, RowGetterTestM3)
+{
+    DenseMatrix A {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+    std::vector<double> a_0 {1, 2, 3};
+    std::vector<double> a_1 {4, 5, 6};
+    std::vector<double> a_2 {7, 8, 9};
 
     EXPECT_EQ(A.GetRow(0), a_0);
     EXPECT_EQ(A.GetRow(1), a_1);
     EXPECT_EQ(A.GetRow(2), a_2);
 }
 
-TEST(DenseTest, HeightGetterTestM3) {
-    DenseMatrix A{3,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+TEST(DenseTest, HeightGetterTestM3)
+{
+    DenseMatrix A {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
 
     EXPECT_EQ(A.GetHeight(), 3);
 }
 
-TEST(DenseTest, WidthGetterTestM3) {
-    DenseMatrix A{3,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+TEST(DenseTest, WidthGetterTestM3)
+{
+    DenseMatrix A {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
 
     EXPECT_EQ(A.GetHeight(), 3);
 }
 
-TEST(DenseTest, ValueGetterTestM3) {
-    DenseMatrix A{3,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9}};
-    std::vector<double> v{1, 2, 3, 4, 5, 6, 7, 8, 9};
+TEST(DenseTest, ValueGetterTestM3)
+{
+    DenseMatrix A {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+    std::vector<double> v {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
     EXPECT_EQ(A.GetValues(), v);
 }
 
-TEST(DenseTest, SetterTestM3) {
-    DenseMatrix A{3,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+TEST(DenseTest, SetterTestM3)
+{
+    DenseMatrix A {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
 
     A.SetElement(0, 0, 8.9);
     A.SetElement(0, 2, 0.0);
@@ -100,13 +108,14 @@ TEST(DenseTest, SetterTestM3) {
     EXPECT_EQ(A.GetElement(2, 2), 9);
 }
 
-TEST(DenseTest, onMatrixMultiplicationTestM3xM3) {
-    DenseMatrix A{3,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9}};
-    DenseMatrix B{3,
-                  3,
-                  {3, 0, 2, 4, 12, 10, 2, 6, 0}};
+TEST(DenseTest, onMatrixMultiplicationTestM3xM3)
+{
+    DenseMatrix A {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+    DenseMatrix B {3,
+                   3,
+                   {3, 0, 2, 4, 12, 10, 2, 6, 0}};
 
     auto C = A * B;
 
@@ -121,13 +130,14 @@ TEST(DenseTest, onMatrixMultiplicationTestM3xM3) {
     EXPECT_FLOAT_EQ(C.GetElement(2, 2), 94);
 }
 
-TEST(DenseTest, onMatrixMultiplicationTestM3x2xM2x4) {
-    DenseMatrix A{3,
-                  2,
-                  {1, 2, 3, 4, 5, 6}};
-    DenseMatrix B{2,
-                  4,
-                  {3, 0, 2, 4, 12, 10, 2, 6}};
+TEST(DenseTest, onMatrixMultiplicationTestM3x2xM2x4)
+{
+    DenseMatrix A {3,
+                   2,
+                   {1, 2, 3, 4, 5, 6}};
+    DenseMatrix B {2,
+                   4,
+                   {3, 0, 2, 4, 12, 10, 2, 6}};
 
     auto C = A * B;
 
@@ -145,11 +155,12 @@ TEST(DenseTest, onMatrixMultiplicationTestM3x2xM2x4) {
     EXPECT_FLOAT_EQ(C.GetElement(2, 3), 56);
 }
 
-TEST(DenseTest, onVectorMultiplicationTestM5x3) {
-    DenseMatrix A{5,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}};
-    std::vector<double> v{1, 0, 2};
+TEST(DenseTest, onVectorMultiplicationTestM5x3)
+{
+    DenseMatrix A {5,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}};
+    std::vector<double> v {1, 0, 2};
 
     auto b = A * v;
 
@@ -160,10 +171,11 @@ TEST(DenseTest, onVectorMultiplicationTestM5x3) {
     EXPECT_FLOAT_EQ(b[4], 43);
 }
 
-TEST(DenseTest, onScalarMultiplicationTestM3) {
-    DenseMatrix A{3,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+TEST(DenseTest, onScalarMultiplicationTestM3)
+{
+    DenseMatrix A {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
 
     auto B = A * 2;
 
@@ -178,10 +190,11 @@ TEST(DenseTest, onScalarMultiplicationTestM3) {
     EXPECT_FLOAT_EQ(B.GetElement(2, 2), 18);
 }
 
-TEST(DenseTest, DivisionTestM3) {
-    DenseMatrix A{3,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+TEST(DenseTest, DivisionTestM3)
+{
+    DenseMatrix A {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
 
     auto B = A / 2;
 
@@ -196,13 +209,14 @@ TEST(DenseTest, DivisionTestM3) {
     EXPECT_FLOAT_EQ(B.GetElement(2, 2), 4.5);
 }
 
-TEST(DenseTest, AdditionTestM3) {
-    DenseMatrix A{3,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9}};
-    DenseMatrix B{3,
-                  3,
-                  {2, 3, 4, 5, 6, 7, 8, 9, 10}};
+TEST(DenseTest, AdditionTestM3)
+{
+    DenseMatrix A {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+    DenseMatrix B {3,
+                   3,
+                   {2, 3, 4, 5, 6, 7, 8, 9, 10}};
 
     auto C = A + B;
 
@@ -217,13 +231,14 @@ TEST(DenseTest, AdditionTestM3) {
     EXPECT_FLOAT_EQ(C.GetElement(2, 2), 19);
 }
 
-TEST(DenseTest, SubtractionTestM3) {
-    DenseMatrix A{3,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9}};
-    DenseMatrix B{3,
-                  3,
-                  {2, 3, 4, 5, 6, 7, 8, 9, 10}};
+TEST(DenseTest, SubtractionTestM3)
+{
+    DenseMatrix A {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+    DenseMatrix B {3,
+                   3,
+                   {2, 3, 4, 5, 6, 7, 8, 9, 10}};
 
     auto C = A - B;
 
@@ -238,18 +253,20 @@ TEST(DenseTest, SubtractionTestM3) {
     EXPECT_FLOAT_EQ(C.GetElement(2, 2), -1);
 }
 
-TEST(DenseTest, ComparisonTestM3) {
-    DenseMatrix A{3,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9}};
-    DenseMatrix B{3,
-                  3,
-                  {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+TEST(DenseTest, ComparisonTestM3)
+{
+    DenseMatrix A {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
+    DenseMatrix B {3,
+                   3,
+                   {1, 2, 3, 4, 5, 6, 7, 8, 9}};
 
     EXPECT_TRUE(A == B);
 }
 
-TEST(DenseTest, IdentityMatrixTestM3) {
+TEST(DenseTest, IdentityMatrixTestM3)
+{
     auto A = IdentityMatrix(3);
 
     EXPECT_EQ(A.GetElement(0, 0), 1);

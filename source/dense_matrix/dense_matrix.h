@@ -3,49 +3,51 @@
 
 #include <vector>
 
-namespace dns {
+namespace dns
+{
     // Class allowing to store sparse matrix compactly
-    class DenseMatrix {
+    class DenseMatrix
+    {
     private:
         // Vectors of elements
         std::vector<double> data_;
 
         // Matrix dimensions
-        unsigned int height_ = 0;
-        unsigned int width_ = 0;
+        size_t height_ = 0;
+        size_t width_ = 0;
 
     public:
         // Constructor
-        DenseMatrix(unsigned int height,
-                    unsigned int width,
+        DenseMatrix(size_t height,
+                    size_t width,
                     std::vector<double> input_v);
 
         // Element getter
-        [[nodiscard]] double GetElement(unsigned int i, unsigned int j) const;
+        [[nodiscard]] double GetElement(size_t i, size_t j) const;
 
         // Column getter
-        [[nodiscard]] std::vector<double> GetColumn(unsigned int j) const;
+        [[nodiscard]] std::vector<double> GetColumn(size_t j) const;
 
         // Row getter
-        [[nodiscard]] std::vector<double> GetRow(unsigned int i) const;
+        [[nodiscard]] std::vector<double> GetRow(size_t i) const;
 
         // Height getter
-        [[nodiscard]] unsigned int GetHeight() const;
+        [[nodiscard]] size_t GetHeight() const;
 
         // Width getter
-        [[nodiscard]] unsigned int GetWidth() const;
+        [[nodiscard]] size_t GetWidth() const;
 
         // Data vector getter
-        [[nodiscard]] const std::vector<double> &GetValues() const;
+        [[nodiscard]] const std::vector<double>& GetValues() const;
 
         // Element setter
-        void SetElement(unsigned int i, unsigned int j, double new_element);
+        void SetElement(size_t i, size_t j, double new_element);
 
         // Multiplication operator* for matrices
-        DenseMatrix operator*(const DenseMatrix &input_m) const;
+        DenseMatrix operator*(const DenseMatrix& input_m) const;
 
         // Multiplication operator* for matrix & vector
-        std::vector<double> operator*(const std::vector<double> &input_v) const;
+        std::vector<double> operator*(const std::vector<double>& input_v) const;
 
         // Multiplication operator* for matrix & scalar
         DenseMatrix operator*(double s) const;
@@ -54,17 +56,17 @@ namespace dns {
         DenseMatrix operator/(double s) const;
 
         // Addition operator+ for matrices
-        DenseMatrix operator+(const DenseMatrix &input_m) const;
+        DenseMatrix operator+(const DenseMatrix& input_m) const;
 
         // Subtraction operator- for matrices
-        DenseMatrix operator-(const DenseMatrix &input_m) const;
+        DenseMatrix operator-(const DenseMatrix& input_m) const;
 
         // Comparison operator== for matrices
-        bool operator==(const DenseMatrix &input_m) const;
+        bool operator==(const DenseMatrix& input_m) const;
     };
 
     // Square matrix with ones on the main diagonal and zeros elsewhere
-    DenseMatrix IdentityMatrix(unsigned int order);
+    DenseMatrix IdentityMatrix(size_t order);
 }
 
 #endif //SOLE_DENSE_MATRIX_H

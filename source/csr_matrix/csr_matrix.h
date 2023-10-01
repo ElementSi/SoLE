@@ -3,53 +3,53 @@
 
 #include <vector>
 
-namespace csr {
+namespace csr
+{
     // Struct of triplet for DOK realization
-    struct Triplet {
-        unsigned int i;
-        unsigned int j;
+    struct Triplet
+    {
+        size_t i;
+        size_t j;
         double v;
     };
 
     // Class allowing to store sparse matrix compactly
-    class CSRMatrix {
+    class CSRMatrix
+    {
     private:
         // Vectors of values and indexing of columns and rows
         std::vector<double> val_;
-        std::vector<unsigned int> col_;
-        std::vector<unsigned int> row_;
-
-        // Zero value for clear logic
-        double zero_ = 0;
+        std::vector<size_t> col_;
+        std::vector<size_t> row_;
 
         // Matrix dimensions
-        unsigned int height_ = 0;
-        unsigned int width_ = 0;
+        size_t height_ = 0;
+        size_t width_ = 0;
 
     public:
         // Constructor
-        CSRMatrix(unsigned int height,
-                  unsigned int width,
-                  const std::vector<Triplet> &DOK);
+        CSRMatrix(size_t height,
+                  size_t width,
+                  const std::vector<Triplet>& DOK);
 
         // Element getter
-        [[nodiscard]] double GetElement(unsigned int i, unsigned int j) const;
+        [[nodiscard]] double GetElement(size_t i, size_t j) const;
 
         // Height getter
-        [[nodiscard]] unsigned int GetHeight() const;
+        [[nodiscard]] size_t GetHeight() const;
 
         // Width getter
-        [[nodiscard]] unsigned int GetWidth() const;
+        [[nodiscard]] size_t GetWidth() const;
 
         // Vectors getters
-        [[nodiscard]] const std::vector<double> &GetValues() const;
+        [[nodiscard]] const std::vector<double>& GetValues() const;
 
-        [[nodiscard]] const std::vector<unsigned int> &GetColumns() const;
+        [[nodiscard]] const std::vector<size_t>& GetColumns() const;
 
-        [[nodiscard]] const std::vector<unsigned int> &GetRows() const;
+        [[nodiscard]] const std::vector<size_t>& GetRows() const;
 
         // Multiplication operator (*) for matrix & vector
-        std::vector<double> operator*(const std::vector<double> &input_v) const;
+        std::vector<double> operator*(const std::vector<double>& input_v) const;
     };
 }
 

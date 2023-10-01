@@ -1,9 +1,10 @@
 #include "householder_transformation.h"
 
-std::pair<dns::DenseMatrix, dns::DenseMatrix> HouseholderTransform(const dns::DenseMatrix &A) {
-    unsigned int height = A.GetHeight();
-    unsigned int width = A.GetWidth();
-    unsigned int order = height;
+std::pair<dns::DenseMatrix, dns::DenseMatrix> HouseholderTransform(const dns::DenseMatrix& A)
+{
+    size_t height = A.GetHeight();
+    size_t width = A.GetWidth();
+    size_t order = height;
 
     // Creating a vector corresponding to the first column of A matrix
     std::vector<double> a = A.GetColumn(0);
@@ -25,27 +26,31 @@ std::pair<dns::DenseMatrix, dns::DenseMatrix> HouseholderTransform(const dns::De
 
     R.SetElement(0, 0, R.GetElement(0, 0) - temp_ratio * temp_composition * v[0]);
 
-    for (unsigned int i = 1; i < height; i++)
+    for (size_t i = 1; i < height; ++i) {
         R.SetElement(i, 0, 0);
+    }
 
-    for (unsigned int j = 1; j < width; j++) {
+    for (size_t j = 1; j < width; ++j) {
         temp_composition = 0;
 
         // Scalar multiplication of v and a_i vectors
-        for (unsigned int i = 0; i < height; i++)
+        for (size_t i = 0; i < height; ++i) {
             temp_composition += R.GetElement(i, j) * v[i];
+        }
 
-        for (unsigned int i = 0; i < height; i++)
+        for (size_t i = 0; i < height; ++i) {
             R.SetElement(i, j, R.GetElement(i, j) - temp_ratio * temp_composition * v[i]);
+        }
     }
 
     // Iteration until process is finished
-    for (unsigned int k = 1; k < width; k++) {
+    for (size_t k = 1; k < width; ++k) {
         // Creating a & v vectors corresponding to the i column of A matrix
         a = R.GetColumn(k);
 
-        for (unsigned int i = 0; i < k; i++)
+        for (size_t i = 0; i < k; ++i) {
             a[i] = 0;
+        }
 
         a[k] > 0 ? sign = 1.0 : sign = -1.0;
         v = a + BasisVector(height, k, sign * abs(a));
@@ -56,31 +61,35 @@ std::pair<dns::DenseMatrix, dns::DenseMatrix> HouseholderTransform(const dns::De
 
         R.SetElement(k, k, R.GetElement(k, k) - temp_ratio * temp_composition * v[k]);
 
-        for (unsigned int i = k + 1; i < height; i++) {
+        for (size_t i = k + 1; i < height; ++i) {
             R.SetElement(i, k, 0);
         }
 
-        for (unsigned int j = k + 1; j < width; j++) {
+        for (size_t j = k + 1; j < width; ++j) {
             temp_composition = 0;
 
             // Scalar multiplication of v and a_i vectors
-            for (unsigned int i = k; i < height; i++)
+            for (size_t i = k; i < height; ++i) {
                 temp_composition += R.GetElement(i, j) * v[i];
+            }
 
-            for (unsigned int i = k; i < height; i++)
+            for (size_t i = k; i < height; ++i) {
                 R.SetElement(i, j, R.GetElement(i, j) - temp_ratio * temp_composition * v[i]);
+            }
         }
 
         // Updating Q matrix
-        for (unsigned int j = 0; j < order; j++) {
+        for (size_t j = 0; j < order; ++j) {
             temp_composition = 0;
 
             // Scalar multiplication of v and q_i vectors
-            for (unsigned int i = k; i < order; i++)
+            for (size_t i = k; i < order; ++i) {
                 temp_composition += Q.GetElement(j, i) * v[i];
+            }
 
-            for (unsigned int i = k; i < order; i++)
+            for (size_t i = k; i < order; ++i) {
                 Q.SetElement(j, i, Q.GetElement(j, i) - temp_ratio * temp_composition * v[i]);
+            }
         }
     }
 
