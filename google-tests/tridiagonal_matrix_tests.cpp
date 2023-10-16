@@ -4,13 +4,35 @@
 
 using namespace trd;
 
+TEST(TridiagonalTest, GetterTestM1)
+{
+    TridiagonalMatrix A {1,
+                         {},
+                         {1.0},
+                         {}};
+
+    EXPECT_EQ(A.GetElement(0, 0), 1.0);
+}
+
+TEST(TridiagonalTest, GetterTestM2)
+{
+    TridiagonalMatrix A {2,
+                         {14.0},
+                         {5.0, 6.0},
+                         {1.0}};
+
+    EXPECT_EQ(A.GetElement(0, 0), 5.0);
+    EXPECT_EQ(A.GetElement(0, 1), 1.0);
+    EXPECT_EQ(A.GetElement(1, 0), 14.0);
+    EXPECT_EQ(A.GetElement(1, 1), 6.0);
+}
+
 TEST(TridiagonalTest, GetterTestM5)
 {
     TridiagonalMatrix A {5,
                          {14.0, 2.0, 5.0, 7.0},
                          {5.0, 6.0, 3.0, 2.0, 7.0},
                          {1.0, 3.0, 2.0, 1.0}};
-    std::vector<double> f {2.0, 8.0, 43.0, 11.0, 2.0};
 
     EXPECT_EQ(A.GetElement(0, 0), 5);
     EXPECT_EQ(A.GetElement(0, 1), 1);

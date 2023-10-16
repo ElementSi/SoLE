@@ -2,6 +2,8 @@
 #define SOLE_TRIDIAGONAL_MATRIX_H
 
 #include <vector>
+#include <stdexcept>
+
 
 namespace trd
 {
@@ -35,6 +37,9 @@ namespace trd
 
         // Element getter
         [[nodiscard]] double GetElement(size_t i, size_t j) const;
+
+        // Element getter through () operator
+        [[nodiscard]] double operator()(size_t i, size_t j) const;
 
         // Triplet getter
         [[nodiscard]] const Triplet& GetTriplet(size_t i) const;

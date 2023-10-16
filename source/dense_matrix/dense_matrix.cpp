@@ -20,6 +20,12 @@ namespace dns
         return this->data_[i * this->width_ + j];
     }
 
+    // Element getter through () operator
+    double DenseMatrix::operator()(size_t i, size_t j) const
+    {
+        return this->data_[i * this->width_ + j];
+    }
+
     // Column getter
     [[nodiscard]] std::vector<double> DenseMatrix::GetColumn(size_t j) const
     {
@@ -70,8 +76,9 @@ namespace dns
         this->data_[i * this->width_ + j] = new_element;
     }
 
-    // Element getter & setter through () operator
-    [[nodiscard]] double& DenseMatrix::operator()(size_t i, size_t j) {
+    // Element setter through () operator
+    double& DenseMatrix::operator()(size_t i, size_t j)
+    {
         return this->data_[i * this->width_ + j];
     }
 

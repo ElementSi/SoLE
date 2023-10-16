@@ -25,6 +25,9 @@ namespace dns
         // Element getter
         [[nodiscard]] double GetElement(size_t i, size_t j) const;
 
+        // Element getter through () operator
+        double operator()(size_t i, size_t j) const;
+
         // Column getter
         [[nodiscard]] std::vector<double> GetColumn(size_t j) const;
 
@@ -43,8 +46,8 @@ namespace dns
         // Element setter
         void SetElement(size_t i, size_t j, double new_element);
 
-        // Element getter & setter through () operator
-        [[nodiscard]] double& operator()(size_t i, size_t j);
+        // Element setter through () operator
+        double& operator()(size_t i, size_t j);
 
         // Multiplication operator* for matrices
         DenseMatrix operator*(const DenseMatrix& input_m) const;
