@@ -12,7 +12,9 @@ namespace dns
             height_(height),
             width_(width),
             data_(std::move(input_v))
-    {}
+    {
+
+    }
 
     // Element getter
     double DenseMatrix::GetElement(size_t i, size_t j) const
